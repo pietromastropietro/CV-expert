@@ -1,31 +1,156 @@
-/* #root {
-    
-} */
+p, h1, h2, h3 {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+body {
+    background-color: rgb(218, 218, 218);
+    font-family: 'Nunito', sans-serif;
+}
+input {
+    font-family: 'Nunito', sans-serif;
+    /* border: 1px solid rgb(141, 141, 141); */
+    /* padding: 10px; */
+    border: none;
+    border-bottom: 1px solid black;
+    /* border-radius: 10px; */
+    background-color: rgba(255, 255, 255, 0);
+    outline: none;
+    margin-bottom: 10px;
+}
+input:focus {
+    /* border: 1px solid rgb(27, 27, 27); */
+    border: none;
+    border-bottom: 1px solid black;
+}
+#main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 header {
     background-color: rgba(0, 0, 0, 0.568);
-    height: 50px;
+    width: 100%;
+    height: 60px;
 }
 #title {
+    margin: 0;
+    border: 0;
     color: white;
     text-align: center;
 }
-#page {
-    display: flex;
-    justify-content: center;
-}
+
+
 #resume {
-    background-color: rgb(224, 224, 224);
-    width: 80%;
-    height: 800px;
+    background-color: rgb(250, 250, 250);
+    box-shadow: 0px 0px 19px 5px rgba(0, 0, 0, 0.219);
+    width: 660px;
+    height: 950px;
     margin-top: 30px;
+    padding: 70px 50px 0 50px;
+    position: relative;
+    overflow: hidden;
 }
+#backgroundShape {
+    position: absolute;
+    z-index: 1;
+
+    top: -70px;    
+    right: -10px;
+    width: 105%;
+    height: 250px;
+    background-color: rgba(0, 207, 173, 0.336);
+    transform: rotate(172deg);
+}
+#personalInfo {
+    height: 300px;
+    display: grid;
+    grid-template: 170px 150px / repeat(3, 1fr);
+
+    position: relative;
+    z-index: 2;
+}
+
 #name {
+    grid-area: 1 / 1 / 1 / 3;
     display: flex;
     flex-direction: column;
-    width: 50%;
+    /* width: 50%; */
+}
+#fullName {
+    font-size: 50px;
+    font-weight: 700;
+}
+#workTitle {
+    font-size: 25px;
+    font-weight: 600;
 }
 #photo {
-    width: 50px;
-    height: 50px;
-    background-color: black;
+    grid-area: 1 / 3 / 1 / 4;
+    justify-self: center;
+}
+#photo > img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: white;
+}
+#contacts {
+    grid-area: 2 / 1 / 2 / 2;
+    margin-top: 35px;
+}
+#profile {
+    grid-area: 2 / 2 / 2 / 4;
+}
+#skills {
+    display: flex;
+    margin-top: 50px;
+}
+#eduSection {
+    /* background-color: rgba(218, 112, 214, 0.397); */
+    width: 30%;
+    
+}
+#educationTitle, #experienceTitle {
+    margin-bottom: 10px;
+}
+.educationSection {
+}
+#workSection {
+    /* background-color: rgba(152, 251, 152, 0.315); */
+    width: 70%;
+    margin-left: 25px;
+}
+.experienceSection {
+    margin-bottom: 20px;
+}
+.experienceForm {
+    display: grid;
+    grid-template: 1fr 1fr 6fr / 1fr;
+}
+.jobTitle {
+    grid-area: 1 / 1 / 2 / 2;
+    font-size: 18px;
+    font-weight: 600;
+
+}
+.jobStartDate {
+    grid-area: 1 / 1 / 2 / 2;
+    justify-self: flex-end;
+    margin-right: 50px;
+}
+.jobEndDate {
+    grid-area: 1 / 1 / 2 / 2;
+    justify-self: flex-end;
+
+}
+.companyName {
+    grid-area: 2 / 1 / 3 / 2;
+    font-size: 18px;
+    font-weight: 700;
+}
+.jobDescription {
+    grid-area: 3 / 1 / 4 / 2;
+
 }

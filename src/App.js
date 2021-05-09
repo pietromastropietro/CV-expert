@@ -9,153 +9,98 @@ import Profile from './components/Profile';
 import Education from './components/Education';
 import Work from './components/Work';
 
-
-// TODO: fix the education and work components
-
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      eduarr: [],
-      eduComponentCount: 1,
-      workComponentCount: 1,
-      eduIdToRemove: '',
+      eduComponents: [{ id: 0 }],
+      workComponents: [{ id: 50 }],
     }
   }
 
   addEduComponent = () => {
     this.setState({
-      eduComponentCount: this.state.eduComponentCount + 1,
+      // this concatenates a new 'id' object to the 'eduComponents' array.
+      // To assign the new id, I get the id of the last object in the array (with '[this.state.eduComponents.length - 1].id') and add 1.
+      eduComponents: this.state.eduComponents.concat({ id: this.state.eduComponents[this.state.eduComponents.length - 1].id + 1 }),
     })
   };
 
   addWorkComponent = () => {
     this.setState({
-      workComponentCount: this.state.workComponentCount + 1,
+      workComponents: this.state.workComponents.concat({ id: this.state.workComponents[this.state.workComponents.length - 1].id + 1 }),
     })
   };
 
-  // deleteCompo = (e) => {
-  //   console.log(e.target.parentElement.className);
-  //   console.log(e.target.parentElement.id);
+  removeEduComponent = (componentId) => {
+    // I filter the 'eduComponents' array to create a new 'components' array with all the 'id' objects 
+    // of 'eduComponents' expect the one I want to delete.
+    const components = this.state.eduComponents.filter(component => component.id !== componentId);
+    // Then I assign this new array to 'eduComponents'. Changing the state makes the page re-render with 
+    // the new components.
+    this.setState({
+      eduComponents: components,
+    });
+  };
 
-  //   this.setState({
-  //     eduIdToRemove: e.target.parentElement.id,
-  //   })
-
-  // }
+  removeWorkComponent = (componentId) => {
+    const components = this.state.workComponents.filter(component => component.id !== componentId);
+    this.setState({
+      workComponents: components,
+    });
+  };
 
   render() {
-    // const { eduSectionNum } = this.state;
-    let eduComponents = [];
-    let workComponents = [];
-    
-    function deleteCompo (e) {
-      console.log(e.target.parentElement.className);
-      console.log(e.target.parentElement.id);
-
-      eduComponents.splice(e.target.parentElement.id, 1);
-    };
-
-    for (let i = 0; i < this.state.eduComponentCount; i++) {
-      eduComponents.push(<Education key={i} id={i} deleteFunc={deleteCompo} />)
-    };
-    for (let i = 0; i < this.state.workComponentCount; i++) {
-      workComponents.push(<Work key={i} id={i} />)
-    }
-
-    if (this.state.eduIdToRemove !== '') {
-      eduComponents.splice(this.state.eduIdToRemove, 1);
-    }
-
-    // this.setState({
-    //   eduIdToRemove: '',
-    // });
-
     return (
-      <div>
+      <div id='main'>
+
         <Header />
-        <div id='page'>
-          <div id='resume'>
+        <div id='resume'>
+          <div id='backgroundShape'></div>
+
+          <div id='personalInfo'>
             <Name />
             <Photo />
             <Contacts />
             <Profile />
-
-            <h2 id='educationTitle'>Education</h2>
-            {eduComponents}
-            <button onClick={this.addEduComponent}>Add Education</button>
-
-            <h2 id='experienceTitle'>Experience</h2>
-            {workComponents}
-            <button onClick={this.addWorkComponent}>Add Work</button>
           </div>
+
+          <div id='skills'>
+            <div id='eduSection'>
+              <h2 id='educationTitle'>Education</h2>
+
+              {this.state.eduComponents.map(component => (
+                <Education
+                  key={component.id}
+                  id={component.id}
+                  removeComponent={this.removeEduComponent}
+                />
+              ))}
+
+              <button onClick={this.addEduComponent}>Add Education</button>
+            </div>
+
+            <div id='workSection'>
+              <h2 id='experienceTitle'>Experience</h2>
+
+              {this.state.workComponents.map(component => (
+                <Work
+                  key={component.id}
+                  id={component.id}
+                  removeComponent={this.removeWorkComponent}
+                />
+              ))}
+
+              <button onClick={this.addWorkComponent}>Add Work</button>
+            </div>
+
+          </div>
+
         </div>
       </div>
     );
   }
 };
-
-
-/*
-class App extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      task: {
-        text: '',
-        id: uniqid(),
-      },
-      tasks: [],
-    };
-  }
-  
-  getInput = (e) => {
-    this.setState({
-      task: {
-        text: e.target.value,
-        id: this.state.task.id,
-      },
-    });
-  };
-
-  addTask = (e) => {
-    // so the page doesnt refresh when clickin submit btn
-    e.preventDefault();
-
-    this.setState({
-      tasks: this.state.tasks.concat(this.state.task),
-      // reset the task
-      task: {
-        text: '',
-        id: uniqid(),
-      },
-    });
-  };
-
-  render() {
-    const { task, tasks } = this.state;
-
-    return (
-      <div>
-        <form onSubmit={this.addTask}>
-          <label htmlFor="taskInput">Write a task</label>
-          <input
-            // everytime the input field changes (the users inputs a char), this function gets called
-            onChange={this.getInput}
-            value={task.text}
-            type='text'
-            id='taskInput'
-          />
-          <button type='submit'>Add Task</button>
-        </form>
-        <Overview tasks={tasks} />
-      </div>
-    );
-  }
-};
-*/
 
 export default App;

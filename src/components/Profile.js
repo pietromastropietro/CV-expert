@@ -6,8 +6,8 @@ class Profile extends React.Component {
         super(props);
 
         this.state = {
-            bio: '',
-            edit: true,
+            bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehende',
+            edit: false,
         }
     }
 
@@ -32,9 +32,9 @@ class Profile extends React.Component {
 
         if (edit) {
             return (
-                <div>
+                <div id='profile'>
                     <h2 id='profileTitle'>Profile</h2>
-                    <form onSubmit={getInput} id='profile'>
+                    <form onSubmit={getInput} >
                         <input type='text' id='bio' defaultValue={bio} placeholder='Write a brief personal bio'></input>
                         <input type='submit'></input>
                     </form>
@@ -42,11 +42,10 @@ class Profile extends React.Component {
             );
         } else {
             return (
-                <div>
+                <div id='profile'>
                     <h2 id='profileTitle'>Profile</h2>
-                    <div id='profile'>
+                    <div onClick={setEditMode}>
                         <p id='bio'>{bio}</p>
-                        <button id='editBtn' onClick={setEditMode}>Edit</button>
                     </div>
                 </div>
             );

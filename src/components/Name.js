@@ -6,9 +6,9 @@ class Name extends React.Component {
         super(props);
 
         this.state = {
-            name: '',
-            work: '',
-            edit: true,
+            name: 'John Ross',
+            work: 'Software Developer',
+            edit: false,
         }
     }
 
@@ -42,10 +42,9 @@ class Name extends React.Component {
             );
         } else {
             return (
-                <div id='name'>
+                <div id='name' onClick={setEditMode}>
                     <p id='fullName'>{name}</p>
                     <p id='workTitle'>{work}</p>
-                    <button id='editBtn' onClick={setEditMode}>Edit</button>
                 </div>
             );
         }

@@ -6,11 +6,12 @@ class Work extends React.Component {
         super(props);
 
         this.state = {
-            degree: '',
-            school: '',
-            start: '',
-            end: '',
-            edit: true,
+            job: 'Software Developer',
+            company: 'Megacorp',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+            start: '2019',
+            end: '2021',
+            edit: false,
         };
     };
 
@@ -18,11 +19,11 @@ class Work extends React.Component {
         e.preventDefault();
 
         this.setState({
-            job: document.querySelector('.jobTitle').value,
-            company: document.querySelector('.companyName').value,
-            description: document.querySelector('.jobDescription').value,
-            start: document.querySelector('.jobStartDate').value,
-            end: document.querySelector('.jobEndDate').value,
+            job: e.target[0].value,
+            company: e.target[3].value,
+            description: e.target[4].value,
+            start: e.target[1].value,
+            end: e.target[2].value,
             edit: false,
         });
     };
@@ -39,8 +40,8 @@ class Work extends React.Component {
 
         if (edit) {
             return (
-                <div id='experienceSection'>
-                    <form onSubmit={getInput} className='experienceForm' id={this.props.id}>
+                <div className='experienceSection' id={this.props.id}>
+                    <form onSubmit={getInput} className='experienceForm'>
                         <input type='text' className='jobTitle' defaultValue={job} placeholder='Job Title'></input>
                         <input type="number" className="jobStartDate" defaultValue={start} placeholder='From (eg 2018)'></input>
                         <input type="number" className="jobEndDate" defaultValue={end} placeholder='To (eg 2022)'></input>
@@ -48,39 +49,23 @@ class Work extends React.Component {
                         <input type='text' className='jobDescription' defaultValue={description} placeholder='Job Description'></input>
                         <input type='submit'></input>
                     </form>
+                    <button onClick={() => this.props.removeComponent(this.props.id)}>Remove</button>
                 </div>
             );
         } else {
             return (
-                <div id='experienceSection'>
-                    <div className='experienceForm' id={this.props.id}>
+                <div className='experienceSection' id={this.props.id}>
+                    <div className='experienceForm'onClick={setEditMode}>
                         <p className='jobTitle'>{job}</p>
                         <p className="jobStartDate">{start}</p>
                         <p className="jobEndDate">{end}</p>
                         <p className='companyName'>{company}</p>
                         <p className='jobDescription'>{description}</p>
                     </div>                    
-                    <button id='editBtn' onClick={setEditMode}>Edit</button>
                 </div>
             );
         }
     };
 };
-
-// const Work = (props) => {
-//     return (
-// <div id='experienceSection'>
-//     <h2 id='experienceTitle'>Experience</h2>
-//     <form id='experienceForm'>
-//         <input type='text' className='jobTitle' placeholder='Job Title'></input>
-//         <input type="number" className="jobStartDate"placeholder='From (eg 2018)'></input>
-//         <input type="number" className="jobEndDate" placeholder='To (eg 2022)'></input>
-//         <input type='text' className='companyName' placeholder='Company Name'></input>
-//         <input type='text' className='jobDescription' placeholder='Job Description'></input>
-//         <input type='submit'></input>
-//     </form>
-// </div>
-//     );
-// };
 
 export default Work;

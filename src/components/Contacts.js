@@ -6,10 +6,10 @@ class Contacts extends React.Component {
         super(props);
 
         this.state = {
-            city: '',
-            phone: '',
-            email: '',
-            edit: true,
+            city: 'London, UK',
+            phone: '+44 07899-12-345',
+            email: 'johnross@example.com',
+            edit: false,
         };
     };
 
@@ -45,11 +45,10 @@ class Contacts extends React.Component {
         );
         } else {
             return (
-                <div id='contacts'>
+                <div id='contacts' onClick={setEditMode}>
                     <p id='city'>{city}</p>
                     <p id="phone">{phone}</p>
                     <p id='email'>{email}</p>
-                    <button id='editBtn' onClick={setEditMode}>Edit</button>
                 </div>
             );
         }
