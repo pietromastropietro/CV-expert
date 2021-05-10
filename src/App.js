@@ -68,7 +68,7 @@ class App extends React.Component {
 
           <div id='skills'>
             <div id='eduSection'>
-              <h2 id='educationTitle'>Education</h2>
+              <p id='educationTitle'>Education</p>
 
               {this.state.eduComponents.map(component => (
                 <Education
@@ -82,7 +82,7 @@ class App extends React.Component {
             </div>
 
             <div id='workSection'>
-              <h2 id='experienceTitle'>Experience</h2>
+              <p id='experienceTitle'>Experience</p>
 
               {this.state.workComponents.map(component => (
                 <Work

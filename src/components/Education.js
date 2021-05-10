@@ -6,7 +6,7 @@ class Education extends React.Component {
         super(props);
 
         this.state = {
-            degree: 'Bs in Computer Science',
+            degree: 'Computer Science Degree',
             school: 'University of London',
             start: '2016',
             end: '2020',

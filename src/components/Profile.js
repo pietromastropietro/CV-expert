@@ -33,7 +33,7 @@ class Profile extends React.Component {
         if (edit) {
             return (
                 <div id='profile'>
-                    <h2 id='profileTitle'>Profile</h2>
+                    <p id='profileTitle'>Profile</p>
                     <form onSubmit={getInput} >
                         <input type='text' id='bio' defaultValue={bio} placeholder='Write a brief personal bio'></input>
                         <input type='submit'></input>
@@ -43,7 +43,7 @@ class Profile extends React.Component {
         } else {
             return (
                 <div id='profile'>
-                    <h2 id='profileTitle'>Profile</h2>
+                    <p id='profileTitle'>Profile</p>
                     <div onClick={setEditMode}>
                         <p id='bio'>{bio}</p>
                     </div>
