@@ -34,8 +34,9 @@ class Profile extends React.Component {
             return (
                 <div id='profile'>
                     <p id='profileTitle'>Profile</p>
-                    <form onSubmit={getInput} >
-                        <input type='text' id='bio' defaultValue={bio} placeholder='Write a brief personal bio'></input>
+                    <form onSubmit={getInput}>
+                        {/* <input type='text' id='bio' defaultValue={bio} placeholder='Write a brief personal bio'></input> */}
+                        <textarea rows='4' id='bio' defaultValue={bio} placeholder='Write a brief personal bio'></textarea>
                         <input type='submit'></input>
                     </form>
                 </div>

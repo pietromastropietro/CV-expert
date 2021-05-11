@@ -20,17 +20,30 @@ class App extends React.Component {
   }
 
   addEduComponent = () => {
-    this.setState({
-      // this concatenates a new 'id' object to the 'eduComponents' array.
-      // To assign the new id, I get the id of the last object in the array (with '[this.state.eduComponents.length - 1].id') and add 1.
-      eduComponents: this.state.eduComponents.concat({ id: this.state.eduComponents[this.state.eduComponents.length - 1].id + 1 }),
-    })
+    // if the user removes all the components, it will start from the beginning with id: 0.
+    if (this.state.eduComponents.length === 0) {
+      this.setState({
+        eduComponents: this.state.eduComponents.concat({ id: 0 }),
+      });
+    } else {
+      this.setState({
+        // this concatenates a new 'id' object to the 'eduComponents' array.
+        // To assign the new id, I get the id of the last object in the array (with '[this.state.eduComponents.length - 1].id') and add 1.
+        eduComponents: this.state.eduComponents.concat({ id: this.state.eduComponents[this.state.eduComponents.length - 1].id + 1 }),
+      });
+    };
   };
 
   addWorkComponent = () => {
-    this.setState({
-      workComponents: this.state.workComponents.concat({ id: this.state.workComponents[this.state.workComponents.length - 1].id + 1 }),
-    })
+    if (this.state.workComponents.length === 0) {
+      this.setState({
+        workComponents: this.state.workComponents.concat({ id: 50 }),
+      });
+    } else {
+      this.setState({
+        workComponents: this.state.workComponents.concat({ id: this.state.workComponents[this.state.workComponents.length - 1].id + 1 }),
+      });
+    };
   };
 
   removeEduComponent = (componentId) => {
@@ -92,7 +105,7 @@ class App extends React.Component {
                 />
               ))}
 
-              <button onClick={this.addWorkComponent}>Add Work</button>
+              <button onClick={this.addWorkComponent}>Add Experience</button>
             </div>
 
           </div>

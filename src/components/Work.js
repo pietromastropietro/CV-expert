@@ -46,10 +46,9 @@ class Work extends React.Component {
                         <input type="number" className="jobStartDate" defaultValue={start} placeholder='From (eg 2018)'></input>
                         <input type="number" className="jobEndDate" defaultValue={end} placeholder='To (eg 2022)'></input>
                         <input type='text' className='companyName' defaultValue={company} placeholder='Company Name'></input>
-                        <input type='text' className='jobDescription' defaultValue={description} placeholder='Job Description'></input>
+                        <textarea rows='9' className='jobDescription' defaultValue={description} placeholder='Job Description'></textarea>
                         <input type='submit'></input>
                     </form>
-                    <button onClick={() => this.props.removeComponent(this.props.id)}>Remove</button>
                 </div>
             );
         } else {
@@ -61,7 +60,8 @@ class Work extends React.Component {
                         <p className="jobEndDate">{end}</p>
                         <p className='companyName'>{company}</p>
                         <p className='jobDescription'>{description}</p>
-                    </div>                    
+                    </div>       
+                    <button className='removeBtn' onClick={() => this.props.removeComponent(this.props.id)}>Remove</button>             
                 </div>
             );
         }

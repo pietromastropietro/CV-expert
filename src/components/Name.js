@@ -37,7 +37,7 @@ class Name extends React.Component {
                 <form onSubmit={getInput} id='name'>
                     <input type='text' id='fullName' defaultValue={name} placeholder='Full name'></input>
                     <input type='text' id='workTitle' defaultValue={work} placeholder='Work title'></input>
-                    <button type='submit'>Submit</button>
+                    <input type='submit'></input>
                 </form>
             );
         } else {

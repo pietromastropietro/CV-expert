@@ -46,18 +46,18 @@ class Education extends React.Component {
                         <input type="number" className="endDate" defaultValue={end} placeholder='To (eg 2022)'></input>
                         <input type='submit'></input>
                     </form>
-                    <button onClick={() => this.props.removeComponent(this.props.id)}>Remove</button>
                 </div>
             );
         } else {
             return (
                 <div className='educationSection' id={this.props.id}>
                     <div className='educationForm' onClick={setEditMode}>
-                        <p id='degreetitle'>{degree}</p>
-                        <p id='schoolName'>{school}</p>
-                        <p id="startDate">{start}</p>
-                        <p id="endDate">{end}</p>
-                    </div>
+                        <p className='degreetitle'>{degree}</p>
+                        <p className='schoolName'>{school}</p>
+                        <p className="startDate">{start}</p>
+                        <p className="endDate">{end}</p>                    
+                    </div>                        
+                    <button className='removeBtn' onClick={() => this.props.removeComponent(this.props.id)}>Remove</button>
                 </div>
             );
         }
