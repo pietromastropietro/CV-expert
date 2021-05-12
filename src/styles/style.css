@@ -1,12 +1,16 @@
-p, h1, h2, h3 {
+/* GLOBAL */
+/* ----------------------------------------------------------- */
+p {
     margin: 0;
     border: 0;
     padding: 0;
 }
-body {
-    background-color: rgb(218, 218, 218);
-    font-family: 'Nunito', sans-serif;
-    font-size: 14px;
+a {
+    color: rgb(3, 243, 203);
+    text-decoration: none;
+}
+a:hover {
+    color: rgb(0, 202, 169);
 }
 textarea {
     font-family: 'Nunito', sans-serif;
@@ -16,21 +20,19 @@ textarea {
     margin-bottom: 10px;
     outline: none;
 }
-input {
+input {    
+    background-color: rgba(255, 255, 255, 0);
     font-family: 'Nunito', sans-serif;
     border: none;
     border: 1px solid rgb(141, 141, 141);
+    border-radius: 10px;    
     padding: 5px 7px 5px 7px;
-    /* border-bottom: 1px solid black; */
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0);
-    outline: none;
     margin-bottom: 10px;
+    outline: none;
 }
 input:focus, textarea:focus { 
     border: none;
     border: 1px solid rgb(27, 27, 27);
-    /* border-bottom: 1px solid black; */
 }
 input[type='submit'] {
     background-color: rgb(216, 216, 216);
@@ -40,75 +42,121 @@ input[type='submit'] {
 input[type='submit']:hover {
     background-color: rgb(187, 187, 187);
 }
-
 button {
     background-color: rgb(216, 216, 216);
+    font-family: 'Nunito', sans-serif;    
+    width: 110px;
     padding: 7px;
     border: none;
     border-radius: 10px;
-    font-family: 'Nunito', sans-serif;
-    width: 110px;
-    /* align-self: center; */
 }
 button:hover {
     background-color: rgb(187, 187, 187);
-
 }
 .removeBtn {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px 0 10px 0;
 }
 
-
-#main {
+/* MAIN BODY */
+/* ----------------------------------------------------------- */
+body {
+    background-color: rgb(218, 218, 218);
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    margin: 0;
+    border: 0;
+}
+#root {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
+/* HEADER */
+/* ----------------------------------------------------------- */
 header {
-    background-color: rgba(0, 0, 0, 0.568);
+    background-color: rgb(58, 58, 58);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     width: 100%;
-    height: 60px;
+    height: 70px;
+    border-bottom: 2px solid rgb(54, 181, 185);
 }
 #title {
-    margin: 0;
-    border: 0;
     color: white;
-    text-align: center;
+    font-size: 40px;
+}
+#info {
+    color: white;
+    font-size: 20px;
+}
+#printBtn {
+    background-color: transparent;
+    color: rgb(3, 243, 203);
+    font-size: 20px;
+    padding: 0;
+    width: auto;
+}
+#printBtn:hover {
+    color: rgb(0, 202, 169);
+    cursor: pointer;
 }
 
-
+/* RESUME */
+/* ----------------------------------------------------------- */
 #resume {
     background-color: rgb(250, 250, 250);
     box-shadow: 0px 0px 19px 5px rgba(0, 0, 0, 0.219);
     width: 660px;
-    height: 950px;
-    margin-top: 30px;
+    min-height: 950px;
+    margin: 30px 0 30px 0;
     padding: 70px 50px 0 50px;
     position: relative;
     overflow: hidden;
 }
 #backgroundShape {
-    position: absolute;
-    z-index: 1;
-
+    background-color: rgba(0, 207, 173, 0.336);
+    transform: rotate(172deg);
     top: -70px;    
     right: -10px;
     width: 105%;
     height: 250px;
-    background-color: rgba(0, 207, 173, 0.336);
-    transform: rotate(172deg);
+    position: absolute;
+    z-index: 1;
 }
 #personalInfo {
-    height: 300px;
     display: grid;
     grid-template: 170px 150px / repeat(3, 1fr);
-
+    height: 300px;
     position: relative;
     z-index: 2;
 }
+#eduAndExpInfo {
+    display: flex;
+    margin-top: 50px;
+}
+#educationContainer {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+#experienceContainer {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-left: 25px;
+}
+#educationHeading, #experienceHeading  {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
 
+/* GENERALINFO  COMPONENT */
+/* ----------------------------------------------------------- */
 #name {
     grid-area: 1 / 1 / 1 / 4;
     display: flex;
@@ -120,22 +168,25 @@ header {
     font-weight: 600;
     text-transform: uppercase;
 }
-#workTitle {
+#profession {
     font-size: 20px;
     font-weight: 500;
     text-transform: uppercase;
 }
-#photo {
+
+/* USERIMAGE COMPONENT */
+/* ----------------------------------------------------------- */
+#userImageContainer {
     grid-area: 1 / 3 / 1 / 4;
     justify-self: flex-end;
 }
-#photo > img{
+#userImageContainer > img{
     width: 120px;
     height: 120px;
     border-radius: 50%;
     background-color: white;
 }
-#photo > form {
+#userImageContainer > form {
     display: flex;
     flex-direction: column;
 }
@@ -148,65 +199,60 @@ header {
 	z-index: -1;
 }
 #fileInput + label {
-    background-color: rgb(216, 216, 216);
+    background-color: rgb(216, 216, 216);    
+    text-align: center;
     padding: 5px 7px 5px 7px;
     border-radius: 10px;
     margin-bottom: 5px;
-    text-align: center;
     cursor: pointer;
 }
 #fileInput + label:hover {
     background-color: rgb(187, 187, 187);
-
 }
 
-
-div#contacts {
+/* CONTACTS COMPONENT */
+/* ----------------------------------------------------------- */
+#contacts {
     grid-area: 2 / 1 / 2 / 2;
-    margin-top: 35px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    
+    margin-top: 35px;
+}
+#contacts > div {
+    display: flex;
+    align-items: center;
+    margin: 5px 0 5px 0;
+}
+#contacts > div > img {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
 }
 form#contacts {
-    display: flex;
-    flex-direction: column;
+    margin: 0;
     padding: 10px;
 }
-#profile {
+
+/* BIO COMPONENT */
+/* ----------------------------------------------------------- */
+#bioContainer {
     grid-area: 2 / 2 / 2 / 4;
 }
-#profile > form {
+#bioContainer > form {
     display: flex;
     flex-direction: column;
 }
-#profileTitle, #educationTitle, #experienceTitle  {
+#profileHeading  {
     font-size: 20px;
-    text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 0.2em;
+    text-transform: uppercase;
     margin-bottom: 20px;
 }
-#experienceTitle, #educationTitle {
-    margin-bottom: 0 !important;
-}
-#skills {
-    display: flex;
-    margin-top: 50px;
-}
-#eduSection {
-    /* background-color: rgba(218, 112, 214, 0.397); */
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-}
-#educationTitle, #experienceTitle {
 
-}
-.educationSection {
-    /* margin-bottom: 35px; */
-
-}
-.educationForm {
+/* EDUCATION COMPONENT */
+/* ----------------------------------------------------------- */
+.education {
     display: grid;
     grid-template: repeat(3, auto) / 190px;
 }
@@ -224,9 +270,17 @@ form#contacts {
     grid-area: 3 / 1 / 4 / 2;
     width: 50px;
 }
+.eduDash {    
+    grid-area: 3 / 1 / 4 / 2;    
+    align-self: center;
+    background-color: black;
+    width: 8px;
+    height: 1px;
+    margin: 0px 0px 0 39px;
+}
 .endDate {
     grid-area: 3 / 1 / 4 / 2;
-    margin-left: 45px;
+    margin-left: 51px;
     width: 50px;
 }
 input.endDate {
@@ -234,81 +288,89 @@ input.endDate {
 }
 
 
-
-
-
-#workSection {
-    /* background-color: rgba(152, 251, 152, 0.315); */
-    width: 70%;
-    margin-left: 25px;
-    display: flex;
-    flex-direction: column;
-}
-.experienceSection {
-    /* margin-bottom: 45px; */
-}
-.experienceForm {
+/* EXPERIENCE COMPONENT */
+/* ----------------------------------------------------------- */
+.experience {
     display: grid;
     grid-template: repeat(3, auto) / 1fr;
 }
-
 .jobTitle {
     grid-area: 1 / 1 / 2 / 2;
-    font-size: 16px;
-    font-weight: 700;
-    text-transform: uppercase;
     color: rgb(99, 99, 99);
-    letter-spacing: 0.1em;
-    margin-bottom: 10px;
-    width: 300px;
-    margin-top: 20px;
-}
-.companyName {
-    grid-area: 2 / 1 / 3 / 2;
     font-size: 16px;
     font-weight: 700;
     text-transform: uppercase;
-    align-self: flex-end;
-}
-.jobStartDate {
-    grid-area: 1 / 1 / 2 / 2;
-    justify-self: flex-end;
-    margin-right: 50px;
-    margin-top: 20px;
-
-    font-size: 16px;
-    font-weight: 500;
     letter-spacing: 0.1em;
-    /* color: rgb(99, 99, 99); */
-    width: 65px;
-}
-.jobEndDate {
-    grid-area: 1 / 1 / 2 / 2;
-    justify-self: flex-end;
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    /* color: rgb(99, 99, 99); */
-    width: 65px;
-    margin-top: 20px;
-
+    width: 300px;
+    margin: 20px 0 10px 0;
 }
 input.jobTitle {
     width: 250px;
 }
-input.jobStartDate {
-    margin-right: 90px;
+.companyName {
+    grid-area: 2 / 1 / 3 / 2;
+    align-self: flex-end;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
 }
-
+.jobStartDate, .jobEndDate {
+    grid-area: 1 / 1 / 2 / 2;
+    justify-self: flex-end;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    width: 65px;
+    margin: 20px 68px 0 0;
+}
+.jobEndDate {
+    margin: 20px 0 0 0 !important;
+}
+input.jobStartDate, input.jobEndDate {
+    margin-right: 90px;
+    height: 22px;
+}
+.jobDash {    
+    background-color: black;
+    grid-area: 1 / 1 / 2 / 2;
+    justify-self: flex-end;
+    width: 10px;
+    height: 1px;
+    margin: 30px 72px 0 0px;
+}
 .jobDescription {
     grid-area: 3 / 1 / 4 / 2;
 }
 
+/* FOOTER COMPONENT */
+/* ----------------------------------------------------------- */
+footer {
+    background-color: rgb(58, 58, 58);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    border-top: 2px solid rgb(54, 181, 185);
+}
+#github {
+    display: flex;
+    align-items: flex-end;
+    font-size: 20px;
+}
+#githubLogo {
+    width: 25px;
+    margin: 0 5px 0 5px;
+}
+
+/* CSS FOR PRINTING */
 @media print {
-    header, button {
+    header, footer, button, label {
         display: none;
     }
-    body, #root, #main {
+    body, #root {
         background-color: transparent;
         margin: 0;
         padding: 0;
@@ -318,21 +380,10 @@ input.jobStartDate {
         background-color: white;
         box-shadow: unset;
         margin: 0;
-        /* width: 100%;
-        height: 100%;
-        margin: 0; */
-        /* padding: 0; */
-        /* padding: 70px 50px 0 50px; */
-        /* padding-right: 50px; */
-
-        /* margin: 0; */
-        /* margin: 70px 50px 0 50px; */
-        /* margin-left: 50px;
-        margin-right: 50px; */
+        width: 190mm;
     }
-    @page {
-        margin-left: 150px;
-
-    }
-
+}
+@page {
+    size: 210mm 297mm; 
+    margin: 0;
 }

@@ -1,13 +1,12 @@
 import React from "react";
-import '../styles/style.css';
-import userImage from '../images/user.svg'
+import defaultImage from '../images/user.svg'
 
-class Photo extends React.Component {
+class UserImage extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            imgSrc: userImage,
+            imgSrc: defaultImage,
         }
     };
 
@@ -22,7 +21,7 @@ class Photo extends React.Component {
 
     render() {
         return (
-            <div id='photo'>
+            <div id='userImageContainer'>
                 <img src={this.state.imgSrc} alt='this-is-me'></img>
                 <form>
                     <input type="file" accept='image/*' id="fileInput" onChange={this.getInput}></input>
@@ -33,4 +32,4 @@ class Photo extends React.Component {
     };
 };
 
-export default Photo;
+export default UserImage;

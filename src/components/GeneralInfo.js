@@ -1,12 +1,11 @@
 import React from "react";
-import '../styles/style.css';
 
-class Name extends React.Component {
+class GeneralInfo extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            name: 'John Ross',
+            name: 'John Smith',
             work: 'Software Developer',
             edit: false,
         }
@@ -17,7 +16,7 @@ class Name extends React.Component {
 
       this.setState({
         name: document.querySelector('#fullName').value,
-        work: document.querySelector('#workTitle').value,
+        work: document.querySelector('#profession').value,
         edit: false,
       });
     };
@@ -36,7 +35,7 @@ class Name extends React.Component {
             return (
                 <form onSubmit={getInput} id='name'>
                     <input type='text' id='fullName' defaultValue={name} placeholder='Full name'></input>
-                    <input type='text' id='workTitle' defaultValue={work} placeholder='Work title'></input>
+                    <input type='text' id='profession' defaultValue={work} placeholder='Profession'></input>
                     <input type='submit'></input>
                 </form>
             );
@@ -44,11 +43,11 @@ class Name extends React.Component {
             return (
                 <div id='name' onClick={setEditMode}>
                     <p id='fullName'>{name}</p>
-                    <p id='workTitle'>{work}</p>
+                    <p id='profession'>{work}</p>
                 </div>
             );
         }
     }
 };
 
-export default Name;
+export default GeneralInfo;

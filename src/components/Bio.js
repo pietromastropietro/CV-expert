@@ -1,12 +1,11 @@
 import React from "react";
-import '../styles/style.css';
 
-class Profile extends React.Component {
+class Bio extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehende',
+            bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehende.',
             edit: false,
         }
     }
@@ -32,19 +31,18 @@ class Profile extends React.Component {
 
         if (edit) {
             return (
-                <div id='profile'>
-                    <p id='profileTitle'>Profile</p>
+                <div id='bioContainer'>
+                    <p id='profileHeading'>Profile</p>
                     <form onSubmit={getInput}>
-                        {/* <input type='text' id='bio' defaultValue={bio} placeholder='Write a brief personal bio'></input> */}
-                        <textarea rows='4' id='bio' defaultValue={bio} placeholder='Write a brief personal bio'></textarea>
+                        <textarea rows='4' id='bio' defaultValue={bio} placeholder='Write a brief personal bio.'></textarea>
                         <input type='submit'></input>
                     </form>
                 </div>
             );
         } else {
             return (
-                <div id='profile'>
-                    <p id='profileTitle'>Profile</p>
+                <div id='bioContainer'>
+                    <p id='profileHeading'>Profile</p>
                     <div onClick={setEditMode}>
                         <p id='bio'>{bio}</p>
                     </div>
@@ -54,4 +52,4 @@ class Profile extends React.Component {
     }
 };
 
-export default Profile;
+export default Bio;

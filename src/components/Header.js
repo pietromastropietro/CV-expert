@@ -1,25 +1,21 @@
 import React from "react";
-import '../styles/style.css';
 
-const Header = (props) => {
-    return (
-        <header>
-            <h1 id='title'>Your personal resume generator!</h1>
-        </header>
-    );
+class Header extends React.Component {
+    print = () => {
+        window.print();
+    };
+
+    render() {
+        return (
+            <header>
+                <p id='title'>CV Expert.</p>
+                <div id='info'>
+                    <p>Click on any text field to edit.</p>
+                    <p>Click <button id='printBtn' onClick={this.print}>here</button> to print or save in PDF.</p>
+                </div>
+            </header>
+        );
+    }
 };
 
 export default Header;
-/*
-import React from "react";
-import '../styles/style.css';
-
-const  = (props) => {
-    return (
-        <div>
-        </div>
-    );
-};
-
-export default ;
-*/

@@ -1,5 +1,4 @@
 import React from "react";
-import '../styles/style.css';
 
 class Education extends React.Component {
     constructor(props) {
@@ -38,25 +37,26 @@ class Education extends React.Component {
 
         if (edit) {
             return (
-                <div className='educationSection' id={this.props.id}>
-                    <form onSubmit={getInput} className='educationForm'>
+                <div id={this.props.id}>
+                    <form onSubmit={getInput} className='education'>
                         <input type='text' className='degreetitle' defaultValue={degree} placeholder='Degree Title'></input>
                         <input type='text' className='schoolName' defaultValue={school} placeholder='School Name'></input>
-                        <input type="number" className="startDate" defaultValue={start} placeholder='From (eg 2018)'></input>
-                        <input type="number" className="endDate" defaultValue={end} placeholder='To (eg 2022)'></input>
+                        <input type="number" className="startDate" defaultValue={start} placeholder='From'></input>
+                        <input type="number" className="endDate" defaultValue={end} placeholder='To'></input>
                         <input type='submit'></input>
                     </form>
                 </div>
             );
         } else {
             return (
-                <div className='educationSection' id={this.props.id}>
-                    <div className='educationForm' onClick={setEditMode}>
+                <div id={this.props.id}>
+                    <div className='education' onClick={setEditMode}>
                         <p className='degreetitle'>{degree}</p>
                         <p className='schoolName'>{school}</p>
                         <p className="startDate">{start}</p>
-                        <p className="endDate">{end}</p>                    
-                    </div>                        
+                        <div className='eduDash'></div>
+                        <p className="endDate">{end}</p>
+                    </div>
                     <button className='removeBtn' onClick={() => this.props.removeComponent(this.props.id)}>Remove</button>
                 </div>
             );

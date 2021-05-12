@@ -1,119 +1,115 @@
 import React from "react";
-import './styles/style.css';
 import Header from './components/Header';
-//import Page from './components/Page';
-import Name from './components/Name';
-import Photo from './components/Photo';
+import GeneralInfo from './components/GeneralInfo';
+import UserImage from './components/UserImage';
 import Contacts from './components/Contacts';
-import Profile from './components/Profile';
+import Bio from './components/Bio';
 import Education from './components/Education';
-import Work from './components/Work';
+import Experience from './components/Experience';
+import Footer from './components/Footer';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.state = {
-      eduComponents: [{ id: 0 }],
-      workComponents: [{ id: 50 }],
+        this.state = {
+            eduComponents: [{ id: 0 }],
+            expComponents: [{ id: 50 }],
+        }
     }
-  }
 
-  addEduComponent = () => {
-    // if the user removes all the components, it will start from the beginning with id: 0.
-    if (this.state.eduComponents.length === 0) {
-      this.setState({
-        eduComponents: this.state.eduComponents.concat({ id: 0 }),
-      });
-    } else {
-      this.setState({
-        // this concatenates a new 'id' object to the 'eduComponents' array.
-        // To assign the new id, I get the id of the last object in the array (with '[this.state.eduComponents.length - 1].id') and add 1.
-        eduComponents: this.state.eduComponents.concat({ id: this.state.eduComponents[this.state.eduComponents.length - 1].id + 1 }),
-      });
+    addEduComponent = () => {
+        // if the user removes all the components, it will start from the beginning with id: 0.
+        if (this.state.eduComponents.length === 0) {
+            this.setState({
+                eduComponents: this.state.eduComponents.concat({ id: 0 }),
+            });
+        } else {
+            this.setState({
+                // this concatenates a new 'id' object to the 'eduComponents' array.
+                // To assign the new id, I get the id of the last object in the array (with '[this.state.eduComponents.length - 1].id') and add 1.
+                eduComponents: this.state.eduComponents.concat({ id: this.state.eduComponents[this.state.eduComponents.length - 1].id + 1 }),
+            });
+        };
     };
-  };
 
-  addWorkComponent = () => {
-    if (this.state.workComponents.length === 0) {
-      this.setState({
-        workComponents: this.state.workComponents.concat({ id: 50 }),
-      });
-    } else {
-      this.setState({
-        workComponents: this.state.workComponents.concat({ id: this.state.workComponents[this.state.workComponents.length - 1].id + 1 }),
-      });
+    addExpComponent = () => {
+        if (this.state.expComponents.length === 0) {
+            this.setState({
+                expComponents: this.state.expComponents.concat({ id: 50 }),
+            });
+        } else {
+            this.setState({
+                expComponents: this.state.expComponents.concat({ id: this.state.expComponents[this.state.expComponents.length - 1].id + 1 }),
+            });
+        };
     };
-  };
 
-  removeEduComponent = (componentId) => {
-    // I filter the 'eduComponents' array to create a new 'components' array with all the 'id' objects 
-    // of 'eduComponents' expect the one I want to delete.
-    const components = this.state.eduComponents.filter(component => component.id !== componentId);
-    // Then I assign this new array to 'eduComponents'. Changing the state makes the page re-render with 
-    // the new components.
-    this.setState({
-      eduComponents: components,
-    });
-  };
+    removeEduComponent = (componentId) => {
+        // I filter the 'eduComponents' array to create a new 'components' array with all the 'id' objects 
+        // of 'eduComponents' expect the one I want to delete.
+        const components = this.state.eduComponents.filter(component => component.id !== componentId);
+        // Then I assign this new array to 'eduComponents'. Changing the state makes the page re-render with 
+        // the new components.
+        this.setState({
+            eduComponents: components,
+        });
+    };
 
-  removeWorkComponent = (componentId) => {
-    const components = this.state.workComponents.filter(component => component.id !== componentId);
-    this.setState({
-      workComponents: components,
-    });
-  };
+    removeExpComponent = (componentId) => {
+        const components = this.state.expComponents.filter(component => component.id !== componentId);
+        this.setState({
+            expComponents: components,
+        });
+    };
 
-  render() {
-    return (
-      <div id='main'>
+    render() {
+        return (
+            <>
+                <Header />
+                <div id='resume'>
+                    <div id='backgroundShape'></div>
+                    <div id='personalInfo'>
+                        <GeneralInfo />
+                        <UserImage />
+                        <Contacts />
+                        <Bio />
+                    </div>
 
-        <Header />
-        <div id='resume'>
-          <div id='backgroundShape'></div>
+                    <div id='eduAndExpInfo'>
+                        <div id='educationContainer'>
+                            <p id='educationHeading'>Education</p>
 
-          <div id='personalInfo'>
-            <Name />
-            <Photo />
-            <Contacts />
-            <Profile />
-          </div>
+                            {this.state.eduComponents.map(component => (
+                                <Education
+                                    key={component.id}
+                                    id={component.id}
+                                    removeComponent={this.removeEduComponent}
+                                />
+                            ))}
 
-          <div id='skills'>
-            <div id='eduSection'>
-              <p id='educationTitle'>Education</p>
+                            <button onClick={this.addEduComponent}>Add Education</button>
+                        </div>
 
-              {this.state.eduComponents.map(component => (
-                <Education
-                  key={component.id}
-                  id={component.id}
-                  removeComponent={this.removeEduComponent}
-                />
-              ))}
+                        <div id='experienceContainer'>
+                            <p id='experienceHeading'>Experience</p>
 
-              <button onClick={this.addEduComponent}>Add Education</button>
-            </div>
+                            {this.state.expComponents.map(component => (
+                                <Experience
+                                    key={component.id}
+                                    id={component.id}
+                                    removeComponent={this.removeExpComponent}
+                                />
+                            ))}
 
-            <div id='workSection'>
-              <p id='experienceTitle'>Experience</p>
-
-              {this.state.workComponents.map(component => (
-                <Work
-                  key={component.id}
-                  id={component.id}
-                  removeComponent={this.removeWorkComponent}
-                />
-              ))}
-
-              <button onClick={this.addWorkComponent}>Add Experience</button>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-    );
-  }
+                            <button onClick={this.addExpComponent}>Add Experience</button>
+                        </div>
+                    </div>
+                </div>
+                <Footer />
+            </>
+        );
+    }
 };
 
 export default App;
