@@ -2,9 +2,6 @@ import React from "react";
 import githubLogo from '../images/git.png';
 
 class Footer extends React.Component {
-    print = () => {
-    };
-
     render() {
         return (
             <footer>
