@@ -27,14 +27,8 @@ class Experience extends React.Component {
         });
     };
 
-    setEditMode = () => {
-        this.setState({
-            edit: true,
-        });
-    };
-
     render() {
-        const { getInput, setEditMode } = this;
+        const { getInput } = this;
         const { job, company, description, start, end, edit } = this.state;
 
         if (edit) {
@@ -53,19 +47,18 @@ class Experience extends React.Component {
         } else {
             return (
                 <div id={this.props.id}>
-                    <div className='experience'onClick={setEditMode}>
+                    <div className='experience' onClick={() => this.setState({ edit: true })}>
                         <p className='jobTitle'>{job}</p>
                         <p className="jobStartDate">{start}</p>
                         <div className='jobDash'></div>
                         <p className="jobEndDate">{end}</p>
                         <p className='companyName'>{company}</p>
                         <p className='jobDescription'>{description}</p>
-                    </div>       
-                    <button className='removeBtn' onClick={() => this.props.removeComponent(this.props.id)}>Remove</button>             
+                    </div>
+                    <button className='removeBtn' onClick={() => this.props.removeComponent(this.props.id)}>Remove</button>
                 </div>
             );
         }
     };
 };
-
 export default Experience;

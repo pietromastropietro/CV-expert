@@ -12,21 +12,15 @@ class Bio extends React.Component {
 
     getInput = (e) => {
         e.preventDefault();
-
+        
         this.setState({
-            bio: document.querySelector('#bio').value,
+            bio: e.target[0].value,
             edit: false,
         });
     };
 
-    setEditMode = () => {
-        this.setState({
-            edit: true,
-        });
-    }
-
     render() {
-        const { getInput, setEditMode } = this;
+        const { getInput } = this;
         const { bio, edit } = this.state;
 
         if (edit) {
@@ -34,7 +28,7 @@ class Bio extends React.Component {
                 <div id='bioContainer'>
                     <p id='profileHeading'>Profile</p>
                     <form onSubmit={getInput}>
-                        <textarea rows='4' id='bio' defaultValue={bio} placeholder='Write a brief personal bio.'></textarea>
+                        <textarea rows='4' defaultValue={bio} placeholder='Write a brief personal bio.'></textarea>
                         <input type='submit'></input>
                     </form>
                 </div>
@@ -43,13 +37,12 @@ class Bio extends React.Component {
             return (
                 <div id='bioContainer'>
                     <p id='profileHeading'>Profile</p>
-                    <div onClick={setEditMode}>
-                        <p id='bio'>{bio}</p>
+                    <div onClick={() => this.setState({ edit: true })}>
+                        <p>{bio}</p>
                     </div>
                 </div>
             );
         }
     }
 };
-
 export default Bio;

@@ -1,22 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 
-class Education extends React.Component {
-    constructor(props) {
-        super(props);
+const Education = (props) => {
+    const [education, setEducation] = useState({
+        degree: 'Computer Science Degree',
+        school: 'University of London',
+        start: '2016',
+        end: '2020',
+        edit: false,
+    });
 
-        this.state = {
-            degree: 'Computer Science Degree',
-            school: 'University of London',
-            start: '2016',
-            end: '2020',
-            edit: false,
-        };
-    };
-
-    getInput = (e) => {
+    const getInput = (e) => {
         e.preventDefault();
 
-        this.setState({
+        setEducation({
             degree: e.target[0].value,
             school: e.target[1].value,
             start: e.target[2].value,
@@ -25,43 +21,31 @@ class Education extends React.Component {
         });
     };
 
-    setEditMode = () => {
-        this.setState({
-            edit: true,
-        });
-    };
-
-    render() {
-        const { getInput, setEditMode } = this;
-        const { degree, school, start, end, edit } = this.state;
-
-        if (edit) {
-            return (
-                <div id={this.props.id}>
-                    <form onSubmit={getInput} className='education'>
-                        <input type='text' className='degreetitle' defaultValue={degree} placeholder='Degree Title'></input>
-                        <input type='text' className='schoolName' defaultValue={school} placeholder='School Name'></input>
-                        <input type="number" className="startDate" defaultValue={start} placeholder='From'></input>
-                        <input type="number" className="endDate" defaultValue={end} placeholder='To'></input>
-                        <input type='submit'></input>
-                    </form>
+    if (education.edit) {
+        return (
+            <div id={props.id}>
+                <form onSubmit={getInput} className='education'>
+                    <input type='text' className='degreetitle' defaultValue={education.degree} placeholder='Degree Title'></input>
+                    <input type='text' className='schoolName' defaultValue={education.school} placeholder='School Name'></input>
+                    <input type="number" className="startDate" defaultValue={education.start} placeholder='From'></input>
+                    <input type="number" className="endDate" defaultValue={education.end} placeholder='To'></input>
+                    <input type='submit'></input>
+                </form>
+            </div>
+        );
+    } else {
+        return (
+            <div id={props.id}>
+                <div className='education' onClick={() => setEducation({ ...education, edit: true })}>
+                    <p className='degreetitle'>{education.degree}</p>
+                    <p className='schoolName'>{education.school}</p>
+                    <p className="startDate">{education.start}</p>
+                    <div className='eduDash'></div>
+                    <p className="endDate">{education.end}</p>
                 </div>
-            );
-        } else {
-            return (
-                <div id={this.props.id}>
-                    <div className='education' onClick={setEditMode}>
-                        <p className='degreetitle'>{degree}</p>
-                        <p className='schoolName'>{school}</p>
-                        <p className="startDate">{start}</p>
-                        <div className='eduDash'></div>
-                        <p className="endDate">{end}</p>
-                    </div>
-                    <button className='removeBtn' onClick={() => this.props.removeComponent(this.props.id)}>Remove</button>
-                </div>
-            );
-        }
-    };
+                <button className='removeBtn' onClick={() => props.removeComponent(props.id)}>Remove</button>
+            </div>
+        );
+    }
 };
-
 export default Education;
